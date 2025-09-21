@@ -1,72 +1,67 @@
 import streamlit as st
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
-# -------------------------------
-# False Position Method with tolerance
-# -------------------------------
-def false_position(func, A, B, tol=1e-3, max_iter=100):
-    fA = func(A)
-    fB = func(B)
+# ฟังก์ชันตัวอย่าง
+def f(x):
+    return math.exp(x) - 3*x
 
-    rows = []
-    for i in range(1, max_iter+1):
-        # สูตร Regula Falsi
-        C = A - (B - A) * fA / (fB - fA)
-        fC = func(C)
+def false_position(a, b, tol=0.001):
+    steps = []
+    while True:
+        fa, fb = f(a), f(b)
+        c = a - (b - a) * fa / (fb - fa)
+        fc = f(c)
 
-        rows.append([i, A, B, C, fC])
+        steps.append((a, b, c, fa, fb, fc))
 
-        # เงื่อนไขหยุดเมื่อ |f(C)| < tolerance
-        if abs(fC) < tol:
+        if abs(fc) < tol:
             break
 
-        if fA * fC < 0:
-            B, fB = C, fC
+        if fa * fc < 0:
+            b = c
         else:
-            A, fA = C, fC
-
-    return pd.DataFrame(rows, columns=["i", "A", "B", "C", "f(C)"])
+            a = c
+    return c, steps
 
 # -------------------------------
-# Streamlit UI
+# ส่วนของ Streamlit
 # -------------------------------
-st.title("📐 วิธีแก้ตำแหน่งผิด (False Position Method)")
+st.title("วิธีแก้ตำแหน่งผิด (False Position Method)")
 
-# รับอินพุตจากผู้ใช้
-func_str = st.text_input("ใส่สมการ f(x):", "np.exp(x) - 3*x")
-A = st.number_input("ค่าเริ่มต้น A:", value=0.6)
-B = st.number_input("ค่าเริ่มต้น B:", value=0.65)
-tol = st.number_input("Tolerance (เช่น 0.001):", value=0.001, format="%.6f")
+# รับค่าเริ่มต้น A และ B
+a = st.number_input("ค่า A (จุดเริ่มต้นซ้าย)", value=0.6)
+b = st.number_input("ค่า B (จุดเริ่มต้นขวา)", value=0.65)
 
 if st.button("คำนวณ"):
-    try:
-        # สร้างฟังก์ชันจากสมการที่ผู้ใช้กรอก
-        func = lambda x: eval(func_str, {"x": x, "np": np})
+    root, steps = false_position(a, b, tol=0.001)
 
-        # คำนวณ
-        df = false_position(func, A, B, tol)
-        st.subheader("📊 ตารางการคำนวณ")
-        st.dataframe(df, use_container_width=True)
+    st.success(f"คำตอบประมาณ = {root:.4f}")
 
-        # คำตอบสุดท้าย
-        last_row = df.iloc[-1]
-        st.success(f"✅ ค่าประมาณราก = {last_row['C']:.6f} (f(C) = {last_row['f(C)']:.6f})")
+    # แสดงตารางผลลัพธ์
+    st.write("### ตารางผลการคำนวณ")
+    st.table(
+        {
+            "A": [f"{s[0]:.6f}" for s in steps],
+            "B": [f"{s[1]:.6f}" for s in steps],
+            "C": [f"{s[2]:.6f}" for s in steps],
+            "f(A)": [f"{s[3]:.6f}" for s in steps],
+            "f(B)": [f"{s[4]:.6f}" for s in steps],
+            "f(C)": [f"{s[5]:.6f}" for s in steps],
+        }
+    )
 
-        # วาดกราฟ
-        xs = np.linspace(min(A, B) - 1, max(A, B) + 1, 400)
-        ys = func(xs)
+    # วาดกราฟ
+    st.write("### กราฟฟังก์ชันและจุด C")
+    x_vals = np.linspace(a-1, b+1, 400)
+    y_vals = [f(x) for x in x_vals]
 
-        fig, ax = plt.subplots()
-        ax.axhline(0, color="black", linewidth=1)
-        ax.plot(xs, ys, label="f(x)")
-        ax.plot(df["C"], df["f(C)"], "ro--", label="จุด C แต่ละรอบ")
-        ax.set_xlabel("x")
-        ax.set_ylabel("f(x)")
-        ax.legend()
-        st.subheader("📈 กราฟฟังก์ชันและจุดประมาณราก")
-        st.pyplot(fig)
-
-    except Exception as e:
-        st.error(f"⚠️ Error: {e}")
+    fig, ax = plt.subplots()
+    ax.axhline(0, color="black", linewidth=1)
+    ax.plot(x_vals, y_vals, label="f(x)")
+    ax.plot([s[2] for s in steps], [s[5] for s in steps], "ro-", label="C (ค่าประมาณราก)")
+    ax.set_xlabel("x")
+    ax.set_ylabel("f(x)")
+    ax.legend()
+    st.pyplot(fig)
