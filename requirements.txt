@@ -1,6 +1,8 @@
+streamlit
 numpy
-pandas
 matplotlib
+sympy
+pandasห
 seaborn
 streamlit
 plotly==5.9.0
