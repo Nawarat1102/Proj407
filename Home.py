@@ -9,6 +9,9 @@ def load_lottieurl(url: str):
         return None
     return r.json()
 
+st.title("ระเบียบวิธีแก้ตำแหน่งผิด")
+
+
 import json
 from streamlit_lottie import st_lottie
 st.page_link("pages/หน้าการคำนวณ.py", label="หน้าการคำนวณ", icon="3️⃣")
