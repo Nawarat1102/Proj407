@@ -26,6 +26,12 @@ def false_position(f, a, b, tol=0.001):
 
 import streamlit as st
 
+
+# -------------------------------
+# ส่วนของ Streamlit
+# -------------------------------
+st.title("False Position Method (Regula Falsi)")
+
 # ข้อความอธิบายในกรอบ
 st.markdown(
     """
@@ -39,10 +45,6 @@ st.markdown(
 )
 
 
-# -------------------------------
-# ส่วนของ Streamlit
-# -------------------------------
-st.title("False Position Method (Regula Falsi)")
 
 # ช่องกรอกสมการ
 user_equation = st.text_input("กรอกสมการ f(x):", value="exp(x) - 3*x")
