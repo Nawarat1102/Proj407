@@ -42,8 +42,8 @@ except Exception as e:
     st.stop()
 
 # กรอกค่า A และ B
-a = st.number_input("ค่า A (จุดเริ่มต้นซ้าย)", value=0.6)
-b = st.number_input("ค่า B (จุดเริ่มต้นขวา)", value=0.65)
+a = st.number_input("ค่า A (จุดเริ่มต้นซ้าย)", value=0.00)
+b = st.number_input("ค่า B (จุดเริ่มต้นขวา)", value=0.00)
 
 if st.button("คำนวณ"):
     root, steps = false_position(f, a, b, tol=0.001)
