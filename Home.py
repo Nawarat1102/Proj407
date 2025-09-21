@@ -11,5 +11,5 @@ def load_lottieurl(url: str):
 
 import json
 from streamlit_lottie import st_lottie
-st.page_link("pages/H1.py", label="หน้าการคำนวณ", icon="3️⃣")
+st.page_link("pages/หน้าการคำนวณ.py", label="หน้าการคำนวณ", icon="3️⃣")
 st.page_link("http://www.google.com", label="Google", icon="🌎")
