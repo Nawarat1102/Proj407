@@ -1,13 +1,12 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import math
+import sympy as sp
 
-# ฟังก์ชันตัวอย่าง
-def f(x):
-    return math.exp(x) - 3*x
-
-def false_position(a, b, tol=0.001):
+# -------------------------------
+# ฟังก์ชันคำนวณ False Position
+# -------------------------------
+def false_position(f, a, b, tol=0.001):
     steps = []
     while True:
         fa, fb = f(a), f(b)
@@ -28,18 +27,30 @@ def false_position(a, b, tol=0.001):
 # -------------------------------
 # ส่วนของ Streamlit
 # -------------------------------
-st.title("วิธีแก้ตำแหน่งผิด (False Position Method)")
+st.title("False Position Method (Regula Falsi)")
 
-# รับค่าเริ่มต้น A และ B
+# ช่องกรอกสมการ
+user_equation = st.text_input("กรอกสมการ f(x):", value="exp(x) - 3*x")
+
+# สร้างฟังก์ชันจากสมการที่กรอก
+x = sp.symbols("x")
+try:
+    expr = sp.sympify(user_equation)  # แปลงข้อความเป็นสมการ Sympy
+    f = sp.lambdify(x, expr, "numpy") # แปลงเป็นฟังก์ชัน Python
+except Exception as e:
+    st.error(f"Error in equation: {e}")
+    st.stop()
+
+# กรอกค่า A และ B
 a = st.number_input("ค่า A (จุดเริ่มต้นซ้าย)", value=0.6)
 b = st.number_input("ค่า B (จุดเริ่มต้นขวา)", value=0.65)
 
 if st.button("คำนวณ"):
-    root, steps = false_position(a, b, tol=0.001)
+    root, steps = false_position(f, a, b, tol=0.001)
 
     st.success(f"คำตอบประมาณ = {root:.4f}")
 
-    # แสดงตารางผลลัพธ์
+    # ตารางผลลัพธ์
     st.write("### ตารางผลการคำนวณ")
     st.table(
         {
@@ -55,7 +66,7 @@ if st.button("คำนวณ"):
     # วาดกราฟ
     st.write("### กราฟฟังก์ชันและจุด C")
     x_vals = np.linspace(a-1, b+1, 400)
-    y_vals = [f(x) for x in x_vals]
+    y_vals = f(x_vals)
 
     fig, ax = plt.subplots()
     ax.axhline(0, color="black", linewidth=1)
