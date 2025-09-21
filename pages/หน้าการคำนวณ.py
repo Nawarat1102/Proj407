@@ -24,6 +24,21 @@ def false_position(f, a, b, tol=0.001):
             a = c
     return c, steps
 
+import streamlit as st
+
+# ข้อความอธิบายในกรอบ
+st.markdown(
+    """
+    <div style="border:2px solid #4CAF50; padding:10px; border-radius:5px; background-color:#f9f9f9">
+        ✅ รากที่คำนวณได้ใกล้เคียงกับรากจริงของสมการ
+        <br>
+        สามารถตรวจสอบความถูกต้องด้วยค่า f(root)
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 # -------------------------------
 # ส่วนของ Streamlit
 # -------------------------------
