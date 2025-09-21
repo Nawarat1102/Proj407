@@ -36,7 +36,7 @@ st.title("False Position Method (Regula Falsi)")
 st.markdown(
     """
     <div style="border:2px solid #4CAF50; padding:10px; border-radius:5px; background-color:#f9f9f9">
-        คำอธิบายคำสั่ง✅ 
+        ⚠คำอธิบายคำสั่ง⚠
         <br>
         eยกกำลังx กรอก=> exp(x)   ถ้าเป็นยกกำลัง กรอก=> **(ตามด้วยตัวเลขยกกำลัง)
     </div>
