@@ -3,9 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
 
-# -------------------------------
-# ฟังก์ชันคำนวณ False Position
-# -------------------------------
+
 def false_position(f, a, b, tol=0.001):
     steps = []
     while True:
@@ -27,9 +25,6 @@ def false_position(f, a, b, tol=0.001):
 import streamlit as st
 
 
-# -------------------------------
-# ส่วนของ Streamlit
-# -------------------------------
 st.title("False Position Method (Regula Falsi)")
 
 # ข้อความอธิบายในกรอบ
