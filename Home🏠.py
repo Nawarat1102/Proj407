@@ -1,30 +1,21 @@
-import streamlit as st
-import requests
+import json
 from streamlit_lottie import st_lottie
+import streamlit as st
 
-# ====== ฟังก์ชันโหลด Lottie จาก URL ======
-def load_lottieurl(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
+# ====== โหลดไฟล์ Lottie JSON ======
+with open("Maths formula.json", "r", encoding="utf-8") as f:  # ใส่ path ให้ตรงกับไฟล์
+    lottie_json = json.load(f)
 
 # ====== หน้า Home ======
 st.set_page_config(page_title="Home", page_icon="🏠", layout="centered")
 
-# Title
 st.title("ระเบียบวิธีแก้ตำแหน่งผิด 📝")
-st.write("โปรแกรมนี้ช่วยคำนวณรากสมการด้วยวิธี **False Position Method** พร้อมแสดงผลกราฟและขั้นตอนการคำนวณ")
+st.write("โปรแกรมนี้ช่วยคำนวณรากสมการด้วยวิธี False Position Method พร้อมแสดงผลกราฟและขั้นตอนการคำนวณ")
 
-# โหลด Lottie JSON จาก URL
-lottie_url = "https://assets10.lottiefiles.com/packages/lf20_ddca4e64.json"  # URL JSON ของ Lottie
-lottie_json = load_lottieurl(lottie_url)
-
-if lottie_json:
-    st_lottie(lottie_json, height=200, key="home")
+# แสดง Lottie Animation
+st_lottie(lottie_json, height=200, key="home")
 
 # ปุ่มลิงก์หน้าอื่น
-st.markdown("### เริ่มใช้งาน:")
 col1, col2, col3 = st.columns(3)
 with col1:
     st.page_link("pages/หน้าการคำนวณ💻.py", label="หน้าการคำนวณ", icon="💻")
