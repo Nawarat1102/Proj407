@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
 
-
 def false_position(f, a, b, tol=0.001):
     steps = []
     while True:
@@ -48,9 +47,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-
-
 
 # ช่องกรอกสมการ
 user_equation = st.text_input("กรอกสมการ f(x):", value="exp(x) - 3*x")
