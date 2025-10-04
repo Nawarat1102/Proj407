@@ -2,8 +2,7 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
 
-st.title("คู่มือการใช้งานโปรแกรม False Position Method")
-st.subheader("เวอร์ชัน 1.0")
+st.title("คู่มือการใช้งานโปรแกรม ระเบียบวิธีแก้ตำแหน่งผิด")
 
 st.markdown("""
 1. วัตถุประสงค์
