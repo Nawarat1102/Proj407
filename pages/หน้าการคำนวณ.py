@@ -30,14 +30,25 @@ st.title("False Position Method (Regula Falsi)")
 # ข้อความอธิบายในกรอบ
 st.markdown(
     """
-    <div style="border:2px solid #4CAF50; padding:10px; border-radius:5px; background-color:#f9f9f9">
-        ⚠คำอธิบายคำสั่ง⚠
+    <div style="border:2px solid #4CAF50; padding:12px; border-radius:8px; background-color:#f9f9f9">
+        <b>⚠ คำอธิบายการกรอกสมการ ⚠</b><br><br>
+        - e ยกกำลัง x → <code>exp(x)</code><br>
+        - ยกกำลังทั่วไป → <code>x**2</code> (เช่น x²), <code>x**3</code> (เช่น x³)<br>
+        - รากที่สอง (√x) → <code>sqrt(x)</code><br>
+        - รากที่สาม → <code>x**(1/3)</code><br>
+        - ลอการิทึมธรรมชาติ (ln) → <code>log(x)</code><br>
+        - ลอการิทึมฐาน 10 → <code>log(x, 10)</code><br>
+        - ฟังก์ชันตรีโกณ → <code>sin(x)</code>, <code>cos(x)</code>, <code>tan(x)</code><br>
+        - ฟังก์ชันตรีโกณผกผัน → <code>asin(x)</code>, <code>acos(x)</code>, <code>atan(x)</code><br>
+        - ค่าคงที่ → π = <code>pi</code>, e = <code>E</code><br>
+        - การคูณต้องใส่ <code>*</code> เช่น 3x → <code>3*x</code><br>
         <br>
-        eยกกำลังx กรอก=> exp(x)   ถ้าเป็นยกกำลัง กรอก=> **(ตามด้วยตัวเลขยกกำลัง)
+        ✅ ตัวอย่าง: <code>(x**3) - (x**2) - 0.1</code>, <code>exp(x) - 3*x</code>, <code>sin(x) - x/2</code>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
