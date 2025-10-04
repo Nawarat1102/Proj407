@@ -3,7 +3,7 @@ from streamlit_lottie import st_lottie
 import streamlit as st
 
 # ====== โหลดไฟล์ Lottie JSON ======
-with open("Maths formula.json", "r", encoding="utf-8") as f:  # ใส่ path ให้ตรงกับไฟล์
+with open("Mathsformula.json", "r", encoding="utf-8") as f:  # ใส่ path ให้ตรงกับไฟล์
     lottie_json = json.load(f)
 
 # ====== หน้า Home ======
