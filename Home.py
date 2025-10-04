@@ -14,6 +14,6 @@ st.title("ระเบียบวิธีแก้ตำแหน่งผิ�
 
 import json
 from streamlit_lottie import st_lottie
-st.page_link("pages/หน้าการคำนวณ.py", label="หน้าการคำนวณ", icon="3️💻")
-st.page_link("pages/คู่มือ.py", label="คู่มือ", icon="3️🔍")
+st.page_link("pages/หน้าการคำนวณ.py", label="หน้าการคำนวณ", icon="💻")
+st.page_link("pages/คู่มือ.py", label="คู่มือ", icon="🔍")
 st.page_link("http://www.google.com", label="Google", icon="🌎")
