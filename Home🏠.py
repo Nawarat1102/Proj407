@@ -2,6 +2,13 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 
+# ====== ฟังก์ชันโหลด Lottie จาก URL ======
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
 # ====== หน้า Home ======
 st.set_page_config(page_title="Home", page_icon="🏠", layout="centered")
 
@@ -9,10 +16,12 @@ st.set_page_config(page_title="Home", page_icon="🏠", layout="centered")
 st.title("ระเบียบวิธีแก้ตำแหน่งผิด 📝")
 st.write("โปรแกรมนี้ช่วยคำนวณรากสมการด้วยวิธี **False Position Method** พร้อมแสดงผลกราฟและขั้นตอนการคำนวณ")
 
-# Lottie Animation (ฝังจาก URL)
-st.markdown("""
-<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ddca4e64.json" background="transparent" speed="1" loop autoplay style="width: 100%; height: 200px;"></lottie-player>
-""", unsafe_allow_html=True)
+# โหลด Lottie JSON จาก URL
+lottie_url = "https://assets10.lottiefiles.com/packages/lf20_ddca4e64.json"  # URL JSON ของ Lottie
+lottie_json = load_lottieurl(lottie_url)
+
+if lottie_json:
+    st_lottie(lottie_json, height=200, key="home")
 
 # ปุ่มลิงก์หน้าอื่น
 st.markdown("### เริ่มใช้งาน:")
