@@ -27,4 +27,4 @@ with open("Mathsformula.json", "r", encoding="utf-8") as f:  # ใส่ path �
 
 
 # แสดง Lottie Animation
-st_lottie(lottie_json, height=300, key="home")
+st_lottie(lottie_json, height=200, key="home")
