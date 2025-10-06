@@ -49,7 +49,7 @@ st.markdown(
 )
 
 # ช่องกรอกสมการ
-user_equation = st.text_input("กรอกสมการ f(x):", value="exp(x) - 3*x")
+user_equation = st.text_input("ใส่ฟังก์ชัน f(x):", value="exp(x) - 3*x")
 
 # สร้างฟังก์ชันจากสมการที่กรอก
 x = sp.symbols("x")
