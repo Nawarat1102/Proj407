@@ -81,7 +81,7 @@ if st.button("คำนวณ"):
     st.success(f"คำตอบประมาณ = {root:.4f}")
 
     # ตารางผลลัพธ์
-    st.write("### ตารางผลการคำนวณ")
+    st.write("ตารางผลการคำนวณ")
     st.table(
         {
             "A": [f"{s[0]:.6f}" for s in steps],
