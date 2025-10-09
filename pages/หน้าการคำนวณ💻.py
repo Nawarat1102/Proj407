@@ -107,7 +107,8 @@ if st.button("คำนวณ"):
             ax.plot(x_vals, y_vals, label="f(x)")
             
             # --- แก้ไข label ของกราฟตรงนี้ ---
-            ax.plot([s[2] for s in steps], [s[5] for s in steps], "ro", label="จุด (c)") 
+            # เปลี่ยน label จาก "จุด (c)" เป็นภาษาอังกฤษ
+            ax.plot([s[2] for s in steps], [s[5] for s in steps], "ro", label="Point (c)") 
             # ---------------------------------
             
             ax.grid(True, linestyle=':', linewidth=0.5)
