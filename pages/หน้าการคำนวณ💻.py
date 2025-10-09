@@ -42,7 +42,7 @@ st.title("False Position Method (Regula Falsi)")
 st.markdown(
     """
     <div style="border:2px solid #4CAF50; padding:12px; border-radius:8px; background-color:#f9f9f9">
-        <b>⚠ คำอธิบายการกรอกสมการ ⚠</b><br><br>
+        <b>⚠ คำอธิบายการกรอกค่าฟังก์ชัน ⚠</b><br><br>
         - e ยกกำลัง x → <code>exp(x)</code><br>
         - ยกกำลังทั่วไป → <code>x**2</code> (เช่น x²), <code>x**3</code> (เช่น x³)<br>
         - รากที่สอง (√x) → <code>sqrt(x)</code><br>
